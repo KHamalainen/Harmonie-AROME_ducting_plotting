@@ -42,7 +42,7 @@ for LL in Levels:
 
         for parameter_name in params:
 
-            dir_path = '/ec/res4/scratch/fn7/DUCT/netCDF/new_files/' + exp + '/'
+            dir_path = '/netCDF/files/' + exp + '/'
             print(dir_path)
 
             fig, ax1 = plt.subplots(1, 1, figsize=(16, 4))
@@ -165,5 +165,5 @@ for LL in Levels:
             # ----------------------------------------------------------
             # SAVE OUTPUT
             # ----------------------------------------------------------
-            output = '/ec/res4/scratch/fn7/DUCT/netCDF/new_files/plots/' + exp + '_' + parameter_name + '_meteogram_H.png'
+            output = '/plots/' + exp + '_' + parameter_name + '_meteogram_H.png'
             fig.savefig(output, dpi=300, bbox_inches="tight")
