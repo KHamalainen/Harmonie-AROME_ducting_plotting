@@ -146,9 +146,6 @@ plt.legend(
 
 # More space for legend
 plt.subplots_adjust(bottom=0.25)
-
-
 plt.tight_layout()
-
 plt.savefig("POD_Uto_new.png", dpi=300, bbox_inches="tight")
 print("Saved POD_Uto_new.png")
