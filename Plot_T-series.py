@@ -12,7 +12,7 @@
 # Produces timeseries plots with the EXACT same colors & styles
 # as the original multi-model version.
 #
-# Author: Updated FMI version
+# Author: Karoliina H. (FMI), 2026
 # ================================================================
 
 import pandas as pd
@@ -155,5 +155,5 @@ plt.tight_layout()
 plt.savefig(f"T_timeseries_{LOC_NAME}_4models.png", dpi=300, bbox_inches="tight")
 plt.close()
 
-print("✅ Saved: T_timeseries with four model configs.")
+print("Saved: T_timeseries with four model configs.")
 
