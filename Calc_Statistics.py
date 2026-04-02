@@ -1,12 +1,14 @@
 # ================================================================
 # Statistics_4models_from_NC.py  (FINAL, BUG-FIXED VERSION)
 #
-# ✅ Uses ORIGINAL logic of Kontingenssi_Utö_60m.py
-# ✅ BUT fixes the original bug where FA and Miss columns were swapped
-# ✅ Reads model dMdh directly from point_fc*.nc (hybrid dimension)
-# ✅ Computes OBS dMdh from [2,5,10,20,30,59] m
-# ✅ Pairs OBS levels with MODEL hybrid-level dMdh correctly
-# ================================================================
+# Uses ORIGINAL logic of Kontingenssi_Utö_60m.py
+# BUT fixes the original bug where FA and Miss columns were swapped
+# Reads model dMdh directly from point_fc*.nc (hybrid dimension)
+# Computes OBS dMdh from [2,5,10,20,30,59] m
+# Pairs OBS levels with MODEL hybrid-level dMdh correctly
+# 
+# Author: Karoliina H. (FMI), 2026
+#================================================================
 
 import pandas as pd
 import numpy as np
@@ -25,7 +27,7 @@ EXPERIMENTS = [
     "750L90"
 ]
 
-BASE_PATH = "/ec/res4/scratch/fn7/DUCT/netCDF/new_files/"
+BASE_PATH = "/nc_files/"
 LOC_NAME  = "Utö"
 
 # ================================================================
@@ -209,7 +211,7 @@ for EX in EXPERIMENTS:
         PC   = (TP+TN)/(TP+TN+FP+FN)
         TS   = TP/(TP+FP+FN) if TP+FP+FN>0 else np.nan
 
-        # ✅ FIXED ORDER: Hit, FA, Miss, CR (correct assignment)
+        # ORDER: Hit, FA, Miss, CR (correct assignment)
         results.append([
             obs_col, mod_col, POD, FAR, Bias, PC, TS,
             TP,     # Hit
@@ -225,6 +227,6 @@ for EX in EXPERIMENTS:
                                   "Hit","FA","Miss","CR"])
     dfout.to_csv(outname, index=False)
 
-    print(f"✅ Saved {outname}")
+    print(f"Saved {outname}")
 
-print("\n✅ ALL MODELS PROCESSED — ORIGINAL NC LOGIC + CORRECTED OUTPUT ORDER")
+print("ALL MODELS PROCESSED — ORIGINAL NC LOGIC + CORRECTED OUTPUT ORDER")
