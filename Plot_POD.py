@@ -1,3 +1,28 @@
+#===============================================================
+# Performance Diagram for Atmospheric Duct Detection (POD)
+#
+# This script plots a Performance Diagram (Success Ratio vs POD)
+# for detecting negative refractivity gradients (dM/dh < 0)
+# using four ATOS experiments (2500L65, 2500L90, 750L65, 750L90)
+# at the Utö mast site.
+#
+# The diagram includes:
+#   - POD (Probability of Detection)
+#   - Success Ratio (SR = 1 - FAR)
+#   - Bias isolines
+#   - Threat Score (TS) isolines
+#   - Experiment-wise colour coding
+#   - Height-level markers for dM/dh layers
+# --------------------------------------------------------------
+# Inputs:
+#   Statistics_Utö_*.csv   (computed from the NC-based pipeline)
+# Output:
+#   POD_Uto_new.png
+#
+#
+# Author: Karoliina H. (FMI), 2026
+#===============================================================
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
