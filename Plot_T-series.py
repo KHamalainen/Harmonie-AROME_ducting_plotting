@@ -2,15 +2,12 @@
 # T_timeseries.py (FOUR MODEL CONFIGURATIONS, POINT-CSV VERSION)
 #
 # Reads:
-#   - Observations (mast 2–30m, mast59 59m, AWS)
+#   - Observations
 #   - Model CSV files generated from point-NC:
 #         Model_data_Uto_2500L65.csv
 #         Model_data_Uto_2500L90.csv
 #         Model_data_Uto_750L65.csv
 #         Model_data_Uto_750L90.csv
-#
-# Produces timeseries plots with the EXACT same colors & styles
-# as the original multi-model version.
 #
 # Author: Karoliina H. (FMI), 2026
 # ================================================================
