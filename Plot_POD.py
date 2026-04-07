@@ -3,7 +3,7 @@
 #
 # This script plots a Performance Diagram (Success Ratio vs POD)
 # for detecting negative refractivity gradients (dM/dh < 0)
-# using four ATOS experiments (2500L65, 2500L90, 750L65, 750L90)
+# using four DUCT experiments (2500L65, 2500L90, 750L65, 750L90)
 # at the Utö mast site.
 #
 # The diagram includes:
