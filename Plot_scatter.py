@@ -1,7 +1,7 @@
 # ================================================================
 # Script for reading observational data and comparing it against 
-# DUCT/ATOS model point-forecast NetCDF files (point_fc*.nc), which 
-# contain only a single latitude–longitude point and hybrid levels.
+# model point-forecast NetCDF files (point_fc*.nc), which 
+# contain a single latitude–longitude point and hybrid levels.
 #
 # The script:
 #   1. Loads OBS data (mast temperatures, RH, pressures)
@@ -11,7 +11,6 @@
 #   5. Exports model time series to CSV
 #   6. Produces scatter comparisons (OBS vs MODEL)
 #
-# All comments in English. Grid-based logic fully removed.
 #
 # Author: Karoliina H. (FMI), 2026
 # ================================================================
@@ -87,7 +86,6 @@ def specific_humidity(e, P):
 
 # ================================================================
 # OBSERVATION DATA PROCESSING
-# (YOUR ORIGINAL OBS SECTION, NOT MODIFIED EXCEPT COMMENTS)
 # ================================================================
 
 mast = pd.read_csv('/csv-files_path/Utö_30m_masto_testijakso.csv')
@@ -199,7 +197,7 @@ OBSS = pd.concat([
 ], axis=1)
 
 # ================================================================
-# MODEL DATA (POINT-NC ONLY)
+# MODEL DATA
 # ================================================================
 
 dir_path = f'/nc_file_path/{EXP}/'
@@ -249,7 +247,7 @@ df.to_csv(f'Model_data_Uto_{EX}.csv')
 
 
 # ================================================================
-# SCATTER ANALYSIS (UNCHANGED EXCEPT USING df INSTEAD OF older model df)
+# SCATTER ANALYSIS
 # ================================================================
 
 tasoparit = {c: c for c in [
