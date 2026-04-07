@@ -1,9 +1,7 @@
 # ================================================================
-# Statistics_4models_from_NC.py  (FINAL, BUG-FIXED VERSION)
+# Statistics_4models_from_NC.py
 #
-# Uses ORIGINAL logic of Kontingenssi_Utö_60m.py
-# BUT fixes the original bug where FA and Miss columns were swapped
-# Reads model dMdh directly from point_fc*.nc (hybrid dimension)
+# Reads model dMdh directly from point_fc*.nc
 # Computes OBS dMdh from [2,5,10,20,30,59] m
 # Pairs OBS levels with MODEL hybrid-level dMdh correctly
 # 
@@ -62,9 +60,9 @@ def extract_time(fname):
 # LOAD OBS DATA (exact original logic)
 # ================================================================
 
-PATH_M30 = "/home/fn7/Kanavoituminen/Utö_30m_masto_testijakso.csv"
-PATH_M59 = "/home/fn7/Kanavoituminen/Uto_T_RH_59m_1min.csv"
-PATH_SYN = "/home/fn7/Kanavoituminen/Utö_synop_testijakso.csv"
+PATH_M30 = "/dir/Utö_30m_masto_testijakso.csv"
+PATH_M59 = "/dir/Uto_T_RH_59m_1min.csv"
+PATH_SYN = "/dir/Utö_synop_testijakso.csv"
 
 # --- Mast 2–30 m ---
 mast = pd.read_csv(PATH_M30)
@@ -229,4 +227,4 @@ for EX in EXPERIMENTS:
 
     print(f"Saved {outname}")
 
-print("ALL MODELS PROCESSED — ORIGINAL NC LOGIC + CORRECTED OUTPUT ORDER")
+print("ALL MODELS PROCESSED")
