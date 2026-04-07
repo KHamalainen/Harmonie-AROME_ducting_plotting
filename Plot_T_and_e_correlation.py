@@ -1,16 +1,14 @@
-"""
-T_vs_M and e_vs_M correlation analysis based ONLY on observational data.
-No hourly resampling. Uses raw timestamps exactly as in the original CSV input.
-All mast levels (2–30 m + 59 m) unified to 2–30–60 m.
-Five gradient layers:
-    2–5 m, 5–10 m, 10–20 m, 20–30 m, 30–60 m
-
-Plots:
-    • Left:  dT/dz vs dM/dz   (orange = where dT/dz > 0 & dM/dz < 0)
-    • Right: de/dz vs dM/dz   (blue   = where de/dz < 0 & dM/dz < 0)
-
-Author: Karoliina H. (FMI), 2026
-"""
+# T_vs_M and e_vs_M correlation analysis based ONLY on observational data.
+# All mast levels (2–30 m + 59 m) unified to 2–30–60 m.
+# Five gradient layers:
+#     2–5 m, 5–10 m, 10–20 m, 20–30 m, 30–60 m
+# 
+# Plots:
+#     • Left:  dT/dz vs dM/dz   (orange = where dT/dz > 0 & dM/dz < 0)
+#     • Right: de/dz vs dM/dz   (blue   = where de/dz < 0 & dM/dz < 0)
+# 
+# Author: Karoliina H. (FMI), 2026
+# ============================================================
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -18,12 +16,12 @@ import numpy as np
 import os
 
 # ============================================================
-# READ OBSERVATIONAL DATA (same CSVs as Plot_scatter.py)
+# READ OBSERVATIONAL DATA
 # ============================================================
 
-mast = pd.read_csv('/home/fn7/Kanavoituminen/Utö_30m_masto_testijakso.csv')
-synop = pd.read_csv('/home/fn7/Kanavoituminen/Utö_synop_testijakso.csv')
-mast60 = pd.read_csv('/home/fn7/Kanavoituminen/Uto_T_RH_59m_1min.csv')
+mast = pd.read_csv('/dir/Utö_30m_masto_testijakso.csv')
+synop = pd.read_csv('/dir/Utö_synop_testijakso.csv')
+mast60 = pd.read_csv('/dir/Uto_T_RH_59m_1min.csv')
 
 # --- Make datetime columns
 mast['time'] = pd.to_datetime(mast['DATA_TIME'])
@@ -49,13 +47,13 @@ mast_T.columns = ['T_2m','T_5m','T_10m','T_20m','T_30m']
 mast_RH.columns = ['RH_2m','RH_5m','RH_10m','RH_20m','RH_30m']
 
 # ============================================================
-# SELECT 60 m VARIABLES (rename 59 → 60)
+# SELECT 60 m VARIABLES
 # ============================================================
 mast60_T = mast60[['T [degC]']].rename(columns={'T [degC]':'T_60m'})
 mast60_RH = mast60[['RH [%]']].rename(columns={'RH [%]':'RH_60m'})
 
 # ============================================================
-# PRESSURE AND MOISTURE COMPUTATIONS (same physics as Plot_scatter.py)
+# PRESSURE AND MOISTURE COMPUTATIONS
 # ============================================================
 def pressure(p, hdiff): return p + (1.225*9.81*hdiff)/100
 def e_s(T): return 0.01*611*np.exp((17.27*T)/(237.3+T))
@@ -75,7 +73,7 @@ P['P_30m'] = pressure(synop['PA0'], -20)
 P['P_60m'] = pressure(synop['PA0'], -49)
 
 # ============================================================
-# COMPUTE e, N, M FOR ALL LEVELS (no hourly averaging!)
+# COMPUTE e, N, M FOR ALL LEVELS
 # ============================================================
 
 # Merge T, RH with synop pressure
@@ -110,7 +108,7 @@ for i in range(5):
       
 
 # ============================================================
-# CONDITIONS (layer-by-layer THEN combine)
+# CONDITIONS
 # ============================================================
 
 cond_T = []
@@ -159,7 +157,7 @@ print(f"Fraction T&E-condition (both true simultaneously): {ET_pct:.2f}%")
 
 
 # ============================================================
-# FINAL PLOTS (as in original)
+# FINAL PLOTS
 # ============================================================
 
 fig, axs = plt.subplots(1, 2, figsize=(14, 5))
@@ -215,4 +213,4 @@ plt.tight_layout()
 plt.savefig(f"T_and_e_correlation.png", dpi=200, bbox_inches="tight")
 plt.close()
 
-print("FIGURE CREATED using RAW observational data.")
+print("FIGURE CREATED!")
