@@ -1,6 +1,5 @@
-# ================================================================
-# Script for reading point-forecast NetCDF files produced from the
-# MEPS/DUCT model output. These files contain only a single 
+# Script for reading point-forecast NetCDF.
+# These files contain only a single 
 # latitude-longitude point and hybrid vertical levels.
 #
 # The script extracts vertical profiles of:
@@ -49,14 +48,13 @@ for EXP in EXP_names:
     data = nc.Dataset(nc_file)
 
     # -----------------------------------------------------------
-    # Read coordinate metadata (scalars in point NetCDF files)
+    # Read coordinate metadata
     # -----------------------------------------------------------
     lat = data.variables['latitude'][()]   # scalar latitude
     lon = data.variables['longitude'][()]  # scalar longitude
 
     # -----------------------------------------------------------
-    # Read vertical profiles directly (no grid indexing)
-    # Each variable is stored as (hybrid) or (time, hybrid)
+    # Read vertical profiles directly 
     # -----------------------------------------------------------
     def read_profile(var):
         arr = data.variables[var][:]
